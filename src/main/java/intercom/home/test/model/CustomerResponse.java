@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerResponse {
-    private String name;
-    private Integer userId;
+  private String name;
+  private Integer userId;
 
-    public CustomerResponse(String name, Integer userId) {
-        this.name = name;
-        this.userId = userId;
-    }
+  public CustomerResponse(String name, Integer userId) {
+    this.name = name;
+    this.userId = userId;
+  }
 }

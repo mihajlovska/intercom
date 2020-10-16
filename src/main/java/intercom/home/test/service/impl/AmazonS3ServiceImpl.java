@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AmazonS3ServiceImpl implements AmazonS3Service {
 
-    @Override
-    public S3Object getS3Object(String bucketName, String keyName) {
-        AmazonS3 amazonS3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
-        return amazonS3Client.getObject(new GetObjectRequest(bucketName, keyName));
-    }
+  @Override
+  public S3Object getS3Object(String bucketName, String keyName) {
+    AmazonS3 amazonS3Client =
+        AmazonS3ClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
+    return amazonS3Client.getObject(new GetObjectRequest(bucketName, keyName));
+  }
 }

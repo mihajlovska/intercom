@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerRequest {
-    @JsonProperty(value = "user_id")
-    private Integer userId;
-    private String name;
-    private Double latitude;
-    private Double longitude;
+  @JsonProperty(value = "user_id")
+  private Integer userId;
+
+  private String name;
+  private Double latitude;
+  private Double longitude;
 }
