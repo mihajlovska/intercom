@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CustomerService {
   List<CustomerResponse> getCustomersNearDublin(String bucketName, String keyName)
-      throws JsonProcessingException;
+          throws JsonProcessingException, NoSuchFieldException;
 }

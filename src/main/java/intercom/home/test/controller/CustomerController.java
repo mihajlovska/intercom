@@ -15,13 +15,15 @@ public class CustomerController {
   @Autowired CustomerService customerService;
   @Autowired AmazonS3Properties amazonS3Properties;
 
-  @GetMapping("/")
-  public List<CustomerResponse> getCustomersNearDublin() throws IOException {
+  @GetMapping
+  public List<CustomerResponse> getCustomersNearDublin() throws IOException, NoSuchFieldException {
     try {
       return customerService.getCustomersNearDublin(
           amazonS3Properties.getBucketName(), amazonS3Properties.getKeyName());
     } catch (IOException e) {
       throw new IOException(e.getMessage());
+    } catch (NoSuchFieldException e) {
+      throw new NoSuchFieldException(e.getMessage());
     }
   }
 }

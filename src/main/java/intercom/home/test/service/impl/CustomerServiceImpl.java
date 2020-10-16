@@ -8,6 +8,8 @@ import intercom.home.test.model.CustomerResponse;
 import intercom.home.test.service.AmazonS3Service;
 import intercom.home.test.service.CustomerService;
 import intercom.home.test.service.DistanceCalculatorService;
+import static intercom.home.test.utils.common.DistanceConstants.REQUIRED_DISTANCE;
+import static intercom.home.test.utils.common.ErrorMessages.ERROR_OBJECT_IS_NOT_FOUND;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,12 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public List<CustomerResponse> getCustomersNearDublin(String bucketName, String keyName)
-      throws JsonProcessingException {
+      throws JsonProcessingException, NoSuchFieldException {
     S3Object s3object = amazonS3Service.getS3Object(bucketName, keyName);
+
+    if (s3object == null) {
+      throw new NoSuchFieldException(ERROR_OBJECT_IS_NOT_FOUND);
+    }
 
     List<CustomerResponse> customersNearDublin = new ArrayList<>();
 
@@ -49,6 +55,11 @@ public class CustomerServiceImpl implements CustomerService {
   private void populateCustomersNearDublin(
       List<CustomerResponse> customersNearDublin, String textLine) throws JsonProcessingException {
     CustomerRequest customer = mapper.readValue(textLine, CustomerRequest.class);
+
+    if (customer.getLatitude() == null || customer.getLongitude() == null) {
+      return;
+    }
+
     if (isNearDublin(customer.getLatitude(), customer.getLongitude())) {
       CustomerResponse response = new CustomerResponse(customer.getName(), customer.getUserId());
       customersNearDublin.add(response);
@@ -57,7 +68,6 @@ public class CustomerServiceImpl implements CustomerService {
 
   private boolean isNearDublin(double customerLatitude, double customerLongitude) {
     return distanceCalculatorService.calculateDistanceFromDublin(
-            customerLatitude, customerLongitude)
-        <= 100;
+            customerLatitude, customerLongitude) <= REQUIRED_DISTANCE;
   }
 }
