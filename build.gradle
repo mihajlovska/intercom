@@ -2,11 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id 'war'
+	id 'application'
 }
 
 group = 'intercom.home'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '11'
 
 configurations {
@@ -22,15 +22,22 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.880'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.0'
+	testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
+	testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.9.RELEASE'
+	testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.4.RELEASE'
+
 }
 
 test {
 	useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+	testLogging {
+		events "started", "skipped", "passed", "failed"
+	}
 }

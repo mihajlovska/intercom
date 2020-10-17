@@ -50,8 +50,6 @@ class CustomerServiceUnitTest {
     S3Object s3Object = generateTestS3Object(content);
 
     Mockito.when(amazonS3Service.getS3Object(any(), any())).thenReturn(s3Object);
-    Mockito.when(distanceCalculatorService.calculateDistanceFromDublin(any(), any()))
-        .thenReturn(200.00);
 
     // act
     List<CustomerResponse> actualList =
@@ -66,8 +64,6 @@ class CustomerServiceUnitTest {
 
     // arrange
     Mockito.when(amazonS3Service.getS3Object(any(), any())).thenReturn(null);
-    Mockito.when(distanceCalculatorService.calculateDistanceFromDublin(any(), any()))
-        .thenReturn(200.00);
 
     // act & assert
     Exception exception =
@@ -110,8 +106,6 @@ class CustomerServiceUnitTest {
     S3Object s3Object = generateTestS3Object(content);
 
     Mockito.when(amazonS3Service.getS3Object(any(), any())).thenReturn(s3Object);
-    Mockito.when(distanceCalculatorService.calculateDistanceFromDublin(any(), any()))
-        .thenReturn(200.00);
 
     // act & assert
     Exception exception =
