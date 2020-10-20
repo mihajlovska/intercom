@@ -10,30 +10,30 @@ Additionaly, maybe the docker software will ask you to install WSL2 Linux kernel
 ## Getting started
 
 To run the application, you need to follow the next steps:
-	1. Start Docker by double click on the icon or open it via windows explorer. It will show message when the docker is started.
-	2. Open command prompt and navigate to the root of the project repository.
-	3. Execute the following command to build the application: 
+- Start Docker by double click on the icon or open it via windows explorer. It will show message when the docker is started.
+- Open command prompt and navigate to the root of the project repository.
+- Execute the following command to build the application: 
 	```bash
 	docker build -t intercom-app .
 	```
-	4. Please wait until the application is built. 
-	5. Execute the following command to run the application:
+- Please wait until the application is built. 
+- Execute the following command to run the application:
 	```bash
 	docker run --rm -p 9000:8080 intercom-app
 	```
-	6. Open browser and navigate to loclahost:9000 .
-	7. You should see the result.
+- Open browser and navigate to loclahost:9000 .
+- You should see the result.
 
 ### Testing
 
 Testing is done using JUnit5 platform and Mockito library. To run the application, you need to follow the next commands:
-	1. Start Docker by double click on the icon or open it via windows explorer. It will show message when the docker is started.
-	2. Open command prompt and navigate to the root of the project repository.
-	3. Execute the following command to run the tests: 
+- Start Docker by double click on the icon or open it via windows explorer. It will show message when the docker is started.
+- Open command prompt and navigate to the root of the project repository.
+- Execute the following command to run the tests: 
 	```bash
 	docker build -f Dockerfile.test -t intercom-app-test .
 	```
-	4. In the command line you can see that the tests are executed. Additionaly, you can see when each test is started and if it is passed or failed.
+- In the command line you can see that the tests are executed. Additionaly, you can see when each test is started and if it is passed or failed.
 
 
 ## Architecture
