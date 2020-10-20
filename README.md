@@ -21,7 +21,7 @@ To run the application, you need to follow the next steps:
 	```bash
 	docker run --rm -p 9000:8080 intercom-app
 	```
-- Open browser and navigate to loclahost:9000 .
+- Open browser and navigate to loclalhost:9000 .
 - You should see the result.
 
 ### Testing
