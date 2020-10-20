@@ -2,4 +2,4 @@
 FROM gradle:jdk11 as builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN ./gradlew cleanTest test
+RUN gradle cleanTest test

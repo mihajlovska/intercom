@@ -2,7 +2,7 @@
 FROM gradle:jdk11 as builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN ./gradlew build
+RUN gradle build -x test
 
 #Build & Run Java Jar File
 FROM openjdk:11.0.4-jre-slim
